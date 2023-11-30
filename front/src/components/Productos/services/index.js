@@ -13,3 +13,4 @@ export async function getProductos(){
         console.log("error al buscar productos", error);
     }
 }
+
