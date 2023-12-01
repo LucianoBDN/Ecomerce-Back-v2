@@ -1,61 +1,86 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { saveProductos } from '../../services';
 
 
-function CrearProductos() {
+
+function AgregarProducto() {
+    // hooks
+    const [imgUrl, setImgUrl] = useState('');
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
-    const [marca, setMarca] = useState('');
     const [precio, setPrecio] = useState('');
+    const [marca, setMarca] = useState('');
 
-    const inputFileRef = useRef();
+    function handleFileChange(e) {
+        const file = e.target.files[0];
 
-    const handleSubmit = (productosData) => {
-        saveProductos(productosData = {
-            nombre: nombre,
-            descripcion: descripcion,
-            precio: precio,
-            marca: marca,
-            imagen: inputFileRef.current.files[0],
-        })
-            .then((response) => {
-               
-                
+        // Convierte el objeto File a URL
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            setImgUrl(reader.result);
+        };
+        reader.readAsDataURL(file);
+    }
 
+    function AgregarProducto() {
+        
+        const formData = {
+            img: imgUrl.toString(),
+            nombre,
+            descripcion,
+            precio,
+            marca,
+        };
+        console.log(formData);
+        saveProductos(formData)
+            .then(res => {
+                alert("producto añadido correctamente");
+            })
+            .catch(err => {
+                console.error(err.message);
             });
     }
 
-
     return (
-        <div>
-            <h5>Crear producto</h5>
-            <form onSubmit={handleSubmit}>
+        <>
+            
+            <section className='addProduct '>
+                <h1>Agregar Zapatillas</h1>
                 <div>
-                    <label>Nombre del producto</label>
-                    <input type="text" value={nombre} onChange={(event) => setNombre(event.target.value)} />
+                    <label htmlFor="img">
+                        Imagen del producto
+                        <input type="file" id='img' onChange={handleFileChange}   />
+                    </label>
                 </div>
                 <div>
-                    <label>Descripción del producto</label>
-                    <input type="text" value={descripcion} onChange={(event) => setDescripcion(event.target.value)} />
+                    <label htmlFor='nombre'>
+                        Nombre Del Producto
+                        <input type='text' id='nombre' name='nombre' value={nombre} onChange={(e) => { setNombre(e.target.value) }} />
+                    </label>
                 </div>
                 <div>
-                    <label>Marca del producto</label>
-                    <input type="text" value={marca} onChange={(event) => setMarca(event.target.value)} />
+                    <label htmlFor='descripcion'>
+                        Descripcion Del Producto
+                        <input type="text" id='descripcion' name='descripcion' value={descripcion} onChange={(e) => { setDescripcion(e.target.value) }} />
+                    </label>
                 </div>
                 <div>
-                    <label>Precio del producto</label>
-                    <input type="text" value={precio} onChange={(event) => setPrecio(event.target.value)} />
+                    <label htmlFor="precio">
+                        Precio Del Producto
+                        <input type="text" id='precio' name='Precio' value={precio} onChange={(e) => { setPrecio(e.target.value) }} />
+                    </label>
                 </div>
                 <div>
-                    <label>Seleccionar imagen</label>
-                    <input type="file" ref={inputFileRef} />
+                    <label htmlFor="marca">
+                        Marca Del Producto
+                        <input type="text" id='marca' name='marca' value={marca} onChange={(e) => { setMarca(e.target.value) }} />
+                    </label>
                 </div>
-                <div>
-                    <button type="submit">Agregar producto</button>
-                </div>
-            </form>
-        </div>
+                <button onClick={AgregarProducto} >Agregar Producto</button>
+            </section>
+            
+        </>
     );
 }
 
-export default CrearProductos;
+export default AgregarProducto;
