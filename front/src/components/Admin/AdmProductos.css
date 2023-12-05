@@ -1,0 +1,45 @@
+
+
+.adm-productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.h2-admproducto{
+    margin: 1rem
+}
+.card {
+    width: 300px;
+    margin: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-info {
+    padding: 20px;
+}
+
+.card-item {
+    margin-bottom: 15px;
+}
+
+.card-label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.card h3 {
+    margin: 0;
+}
+
+.card-image {
+    overflow: hidden;
+    border-top: 1px solid #ddd;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+}

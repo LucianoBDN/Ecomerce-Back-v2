@@ -1,9 +1,11 @@
+// AdmProductos.jsx
+
 import React, { useState, useEffect } from 'react';
 import { getProductos } from "./services";
 import CrearProducto from "./cruds/productos/CrearProducto";
 import ActProducto from "./cruds/productos/ActProducto";
 import BorrarProducto from "./cruds/productos/BorrarProducto";
-
+import './AdmProductos.css';
 
 export const AdmProductos = () => {
     const [productos, setProductos] = useState([]);
@@ -21,37 +23,33 @@ export const AdmProductos = () => {
 
     return (
         <>
-            <section>
-
-
-                <CrearProducto />
-                <ActProducto />
-                <BorrarProducto />
-
-
-
-                {productos.map(({ _id, nombre, marca, precio, imagen }) => (
-                    <div key={_id}>
-                        <div>
-                            <div>Nombre del producto</div>
+            <CrearProducto />
+            <ActProducto />
+            <BorrarProducto />
+            <h2 className='h2-admproducto'>Lista de productos</h2>
+        <section className="adm-productos-container">
+            {productos.map(({ _id, nombre, marca, precio, imagen }) => (
+                <div className="card" key={_id}>
+                    <div className="card-info">
+                        <div className="card-item">
+                            <div className="card-label">Nombre del producto</div>
                             <h3>{nombre}</h3>
                         </div>
-                        <div>
-                            <div>Marca</div>
+                        <div className="card-item">
+                            <div className="card-label">Marca</div>
                             <h3>{marca}</h3>
                         </div>
-                        <div>
-                            <div>Precio</div>
+                        <div className="card-item">
+                            <div className="card-label">Precio</div>
                             <h3>{precio}</h3>
                         </div>
-                        <div>
-                            <div>Imagen</div>
-                            <img src={process.env.PUBLIC_URL + imagen} alt="" style={{ maxWidth: '50px', maxHeight: '50px' }} />
-                        </div>
                     </div>
-                ))}
-            </section>
-
+                    <div className="card-image">
+                        <img src={process.env.PUBLIC_URL + imagen} alt="" />
+                    </div>
+                </div>
+            ))}
+        </section>
         </>
     );
 }

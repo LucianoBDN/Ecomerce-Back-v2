@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { getProductos } from "./services";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import './Productos.css';
+import zapa from "./publicidadmujer.jpeg";
 
 const Productos = () => {
-    //const [key, setKey] = useState('marca');
     const [productos, setProductos] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedMarca, setSelectedMarca] = useState('');
 
     useEffect(() => {
         async function cargarProductos() {
@@ -19,35 +22,44 @@ const Productos = () => {
         cargarProductos();
     }, []);
 
-    const productoPorMarca = productos.reduce((acc, producto) => {
-        if (!acc[producto.marca]) {
-            acc[producto.marca] = [];
-        }
-        acc[producto.marca].push(producto);
-        return acc;
-    }, {});
+    const marcas = [...new Set(productos.map(producto => producto.marca))];
 
     return (
         <>
-        <Navbar/>
-            <div>
-                {Object.entries(productoPorMarca).map(([marca, productos]) => (
-                    <div key={marca}>
-                        <h2>{marca}</h2>
-                        {productos.map((producto) => (
-                            <div key={producto._id}>
-                                <img src={producto.imagen} alt={producto.nombre} />
-                                <h3>{producto.nombre}</h3>
-                                <p>{`${producto.descripcion}`}</p>
-                                <p>{`$${producto.precio}`}</p>
-                            </div>
+            <Navbar />
+            <div className="products-catalogo">
+                <div className="filters">
+                    <input
+                        type="text"
+                        placeholder="Buscar por nombre de producto"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <select
+                        value={selectedMarca}
+                        onChange={(e) => setSelectedMarca(e.target.value)}
+                    >
+                        <option value="">Todas las marcas</option>
+                        {marcas.map((marca, index) => (
+                            <option key={index} value={marca}>{marca}</option>
                         ))}
-                    </div>
-                ))}
+                    </select>
+                </div>
+                <div className="producto-container">
+                    {productos.map((producto) => (
+                        <div className="producto-card" key={producto._id}>
+                            <img src={zapa} alt={producto.nombre} />
+                            <h3>{producto.nombre}</h3>
+                            <p>{`${producto.descripcion}`}</p>
+                            <p>{`$${producto.precio}`}</p>
+                            <h6>{producto.marca}</h6>
+                            <button>Agregar al carrito</button>
+                        </div>
+                    ))}
+                </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
-
     );
 };
 

@@ -1,0 +1,46 @@
+
+
+.center-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.select-box {
+    margin: 10px 0;
+}
+
+.button-menu-delete {
+    background-color: #007BFF; 
+    color: #fff;
+    border: none;
+    border-radius: 5px; 
+    width: auto;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.delete-button {
+    margin-right: 10px;
+    background-color: #007BFF; 
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px; 
+    width: auto;
+}
+
+.cancel-button {
+    width: auto;
+    background-color: #007BFF; 
+    color: #fff;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px; 
+}

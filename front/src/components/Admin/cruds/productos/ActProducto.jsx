@@ -1,11 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+// ActProductos.jsx
 
+import React, { useState, useEffect, useRef } from 'react';
+import './ActProducto.css';
 import { getProductos, updateProductos } from '../../services';
 
 function ActProductos() {
     const [productos, setProductos] = useState([]);
     const [productoSel, setProductoSel] = useState("");
     const [datosProducto, setDatosProducto] = useState({});
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         async function cargaProductos() {
@@ -24,7 +27,6 @@ function ActProductos() {
         setDatosProducto(selectedProducto);
     };
 
-    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -57,10 +59,12 @@ function ActProductos() {
     };
 
     return (
-        <div>
-            <button onClick={handleShow}>Actualizar producto</button>
+        <div className="update-product-container">
+            <div className="update-product-button-container">
+                <button className="update-product-button" onClick={handleShow}>Actualizar producto</button>
+            </div>
             {show && (
-                <div>
+                <div className="update-product-modal">
                     <div>
                         <h5>Actualizar producto</h5>
                     </div>
@@ -101,7 +105,7 @@ function ActProductos() {
                     </div>
                     <div>
                         <button type="submit" onClick={handleSubmit}>Actualizar producto</button>
-                        <button onClick={handleClose}>Cancelar</button>
+                        <button className='button-cancel' onClick={handleClose}>Cancelar</button>
                     </div>
                 </div>
             )}

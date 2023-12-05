@@ -1,0 +1,82 @@
+.update-product-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+
+.update-product-button-container {
+    margin-bottom: 15px;
+}
+
+
+.update-product-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    width: auto;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+
+.update-product-modal {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.update-product-modal form,
+.update-product-modal div {
+    margin-bottom: 15px;
+}
+
+
+.update-product-modal label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+
+.update-product-modal input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+
+.update-product-modal button {
+    background-color: #007BFF;
+    color: #fff;
+    width: auto;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    
+}
+
+
+.button-cancel {
+    margin-left: 10px;
+}
+
+
+.update-product-modal button:hover {
+    background-color: #0056b3;
+    width: auto;
+    
+}
+

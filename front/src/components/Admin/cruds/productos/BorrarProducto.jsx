@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import './BorrarProducto.css';
 import { getProductos, deleteProductos } from '../../services';
 
 function BorrarProductos() {
@@ -42,8 +42,8 @@ function BorrarProductos() {
     };
 
     return (
-        <div>
-            <button onClick={handleShow}>Borrar producto</button>
+        <div className="center-container">
+            <button className='button-menu-delete' onClick={handleShow}>Borrar producto</button>
             {show && (
                 <div>
                     <div>
@@ -53,7 +53,7 @@ function BorrarProductos() {
                         <form>
                             <div>
                                 <label>Seleccionar producto</label>
-                                <select value={productoSel} onChange={handleSelProducto}>
+                                <select className="select-box" value={productoSel} onChange={handleSelProducto}>
                                     <option>Seleccionar producto</option>
                                     {productos.map((producto) => (
                                         <option key={producto._id} value={producto._id}>
@@ -65,8 +65,8 @@ function BorrarProductos() {
                         </form>
                     </div>
                     <div>
-                        <button type="submit" onClick={handleDelete}>Borrar producto</button>
-                        <button onClick={handleClose}>Cancelar</button>
+                        <button type="submit" onClick={handleDelete} className="delete-button">Borrar producto</button>
+                        <button onClick={handleClose} className="cancel-button">Cancelar</button>
                     </div>
                 </div>
             )}
