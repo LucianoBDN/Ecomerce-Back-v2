@@ -113,6 +113,11 @@
 
     }
 
+    .carrito{
+        display: flex;
+        justify-content: center;
+    }
+
     .carrito img {
         max-width: 3rem;
     }

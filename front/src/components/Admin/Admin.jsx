@@ -15,9 +15,9 @@ function Admin() {
                 {key === 'productos' && <AdmProductos />}
             </div>
             <div>
-                <button onClick={() => setKey('productos')}>
+                {/* <button onClick={() => setKey('productos')}>
                     Productos
-                </button>
+                </button> */}
             </div>
             <Footer/>
         </div>

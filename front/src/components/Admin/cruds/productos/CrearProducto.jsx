@@ -22,7 +22,7 @@ function AgregarProducto() {
         })
             .then((response) => {
 
-                //window.location.reload()
+                window.location.reload()
 
             });
     }

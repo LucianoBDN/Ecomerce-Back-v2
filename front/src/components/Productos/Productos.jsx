@@ -57,7 +57,7 @@ const Productos = () => {
                             <img src={producto.imagen} alt={producto.nombre} />
                             <h3>{producto.nombre}</h3>
                             <p>{`${producto.descripcion}`}</p>
-                            <p>{`$${producto.precio}`}</p>
+                            <p>{`$ ${producto.precio}`}</p>
                             <h6>{producto.marca}</h6>
                             <button>Agregar al carrito</button>
                         </div>
