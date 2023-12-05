@@ -3,7 +3,7 @@ import { getProductos } from "./services";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import './Productos.css';
-import zapa from "./publicidadmujer.jpeg";
+//import zapa from "./publicidadmujer.jpeg";
 
 const Productos = () => {
     const [productos, setProductos] = useState([]);
@@ -23,6 +23,12 @@ const Productos = () => {
     }, []);
 
     const marcas = [...new Set(productos.map(producto => producto.marca))];
+
+    // Filter products based on search term and selected brand
+    const filteredProductos = productos.filter(producto =>
+        producto.nombre.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (selectedMarca === '' || producto.marca === selectedMarca)
+    );
 
     return (
         <>
@@ -46,9 +52,9 @@ const Productos = () => {
                     </select>
                 </div>
                 <div className="producto-container">
-                    {productos.map((producto) => (
+                    {filteredProductos.map((producto) => (
                         <div className="producto-card" key={producto._id}>
-                            <img src={zapa} alt={producto.nombre} />
+                            <img src={producto.imagen} alt={producto.nombre} />
                             <h3>{producto.nombre}</h3>
                             <p>{`${producto.descripcion}`}</p>
                             <p>{`$${producto.precio}`}</p>

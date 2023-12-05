@@ -17,17 +17,26 @@ export async function getProductos() {
 }
 
 
-export async function saveProductos(productosData) {
-    try {
+export async function saveProductos(productosData){
+    const formData = new FormData();
+    formData.append("nombre", productosData.nombre )
+    formData.append("imagen", productosData.imagen )
+    formData.append("descripcion", productosData.descripcion )
+    formData.append("precio", productosData.precio )
+    formData.append("marca", productosData.marca )
+    
+    try{
         const response = await axios({
             url: `${baseUrl}/productos`,
-            data: productosData,
             method: "POST",
-        });
-        return response;
-    } catch (error) {
-        console.log("Error al guardar los datos del producto", error);
+            data: formData
+        })
+        return response
     }
+    catch(e){
+        console.log(e);
+    }
+
 }
 
 

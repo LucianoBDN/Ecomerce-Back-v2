@@ -1,41 +1,29 @@
-import React, { useState } from 'react';
-import { saveProductos } from '../../services';
+import React, { useState, useRef } from 'react';
+import { saveProductos } from '../../services/index';
 import './CrearProducto.css'; // Asegúrate de importar el archivo CSS
 
 function AgregarProducto() {
     // hooks
-    const [imgUrl, setImgUrl] = useState('');
+
     const [nombre, setNombre] = useState('');
     const [descripcion, setDescripcion] = useState('');
     const [precio, setPrecio] = useState('');
     const [marca, setMarca] = useState('');
 
-    function handleFileChange(e) {
-        const file = e.target.files[0];
+    const inputFileRef = useRef();
 
-        // Convierte el objeto File a URL
-        const reader = new FileReader();
-        reader.onloadend = () => {
-            setImgUrl(reader.result);
-        };
-        reader.readAsDataURL(file);
-    }
+    const crearProducto = (productosData) => {
+        saveProductos(productosData = {
+            nombre: nombre,
+            descripcion: descripcion,
+            precio: precio,
+            marca: marca,
+            imagen: inputFileRef.current.files[0],
+        })
+            .then((response) => {
 
-    function AgregarProducto() {
-        const formData = {
-            img: imgUrl.toString(),
-            nombre,
-            descripcion,
-            precio,
-            marca,
-        };
-        console.log(formData);
-        saveProductos(formData)
-            .then(res => {
-                alert("producto añadido correctamente");
-            })
-            .catch(err => {
-                console.error(err.message);
+                //window.location.reload()
+
             });
     }
 
@@ -46,7 +34,7 @@ function AgregarProducto() {
                 <div className="form-group">
                     <label htmlFor="img">
                         Imagen del producto
-                        <input type="file" id="img" className="form-control" onChange={handleFileChange} />
+                        <input type="file" id="img" className="form-control" ref={inputFileRef} />
                     </label>
                 </div>
                 <div className="form-group">
@@ -73,7 +61,7 @@ function AgregarProducto() {
                         <input type="text" id="marca" name="marca" value={marca} className="form-control" onChange={(e) => { setMarca(e.target.value) }} />
                     </label>
                 </div>
-                <button onClick={AgregarProducto} className="btn">Agregar Producto</button>
+                <button onClick={crearProducto} className="btn">Agregar Producto</button>
             </section>
         </>
     );
